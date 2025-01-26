@@ -79,3 +79,4 @@ post {
         cleanWs() // Clean workspace after the build
     }
 }
+}
