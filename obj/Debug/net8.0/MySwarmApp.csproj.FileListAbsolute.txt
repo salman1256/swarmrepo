@@ -1,0 +1,14 @@
+D:\Practice\MySwarmApp\bin\Debug\net8.0\MySwarmApp.exe
+D:\Practice\MySwarmApp\bin\Debug\net8.0\MySwarmApp.deps.json
+D:\Practice\MySwarmApp\bin\Debug\net8.0\MySwarmApp.runtimeconfig.json
+D:\Practice\MySwarmApp\bin\Debug\net8.0\MySwarmApp.dll
+D:\Practice\MySwarmApp\bin\Debug\net8.0\MySwarmApp.pdb
+D:\Practice\MySwarmApp\obj\Debug\net8.0\MySwarmApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Practice\MySwarmApp\obj\Debug\net8.0\MySwarmApp.AssemblyInfoInputs.cache
+D:\Practice\MySwarmApp\obj\Debug\net8.0\MySwarmApp.AssemblyInfo.cs
+D:\Practice\MySwarmApp\obj\Debug\net8.0\MySwarmApp.csproj.CoreCompileInputs.cache
+D:\Practice\MySwarmApp\obj\Debug\net8.0\MySwarmApp.dll
+D:\Practice\MySwarmApp\obj\Debug\net8.0\refint\MySwarmApp.dll
+D:\Practice\MySwarmApp\obj\Debug\net8.0\MySwarmApp.pdb
+D:\Practice\MySwarmApp\obj\Debug\net8.0\MySwarmApp.genruntimeconfig.cache
+D:\Practice\MySwarmApp\obj\Debug\net8.0\ref\MySwarmApp.dll
