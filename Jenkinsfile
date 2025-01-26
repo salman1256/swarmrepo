@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-repo-url.git' // Replace with your actual repo URL
+                git 'https://github.com/salman1256/swarmrepo.git' // Replace with your actual repo URL
             }
         }
 
