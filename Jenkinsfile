@@ -51,32 +51,31 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    //bat "docker login -u ${DOCKER_REGISTRY} -p ${DOCKER_PASSWORD}" // Ensure DOCKER_PASSWORD is set in Jenkins credentials
+                    
                     bat "docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
                     bat "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
                 }
             }
         }
 
-        stage('Deploy to Docker Swarm') {
-            steps {
-                script {
-                    sshagent(['dockerid']) { // Use the ID of the SSH key added in Jenkins credentials
-                        bat """
-                        ssh -o StrictHostKeyChecking=no ${SERVER_USER}@${SERVER_IP} '
-                            cd /path/to/your/app
-                            docker service update --image ${DOCKER_REGISTRY}/${DOCKER_IMAGE} my-swarm-service
-                        '
-                        """
-                    }
+       stage('Deploy to Docker Swarm') {
+        steps {
+            script {
+                sshagent(['dockerid']) { // Use the SSH key added in Jenkins credentials
+                    bat """
+                    ssh -o StrictHostKeyChecking=no ${SERVER_USER}@${SERVER_IP} '
+                        cd /path/to/your/app
+                        docker service update --image ${DOCKER_REGISTRY}/${DOCKER_IMAGE} my-swarm-service
+                    '
+                    """
                 }
             }
         }
     }
+}
 
-    post {
-        always {
-            cleanWs() // Clean workspace after the build
-        }
+post {
+    always {
+        cleanWs() // Clean workspace after the build
     }
 }
