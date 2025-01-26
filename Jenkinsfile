@@ -51,7 +51,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    bat "docker login -u ${DOCKER_REGISTRY} -p ${DOCKER_PASSWORD}" // Ensure DOCKER_PASSWORD is set in Jenkins credentials
+                    //bat "docker login -u ${DOCKER_REGISTRY} -p ${DOCKER_PASSWORD}" // Ensure DOCKER_PASSWORD is set in Jenkins credentials
                     bat "docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
                     bat "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
                 }
