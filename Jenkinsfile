@@ -4,15 +4,15 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'my-swarm-app:latest'
         DOCKER_REGISTRY = 'mohdsalmanirfan' 
-        SERVER_IP = '172.27.96.1'  //ipconfig     IPv4 Address. . . . . . . . . . . : 172.27.96.1
-        SERVER_USER = 'salman\salma'  //whoami
+        SERVER_IP = '172.27.96.1'  // Replace with your actual server IP
+        SERVER_USER = 'salman'  // Use just the username, not the domain
         SSH_KEY = credentials('dockerid') // Add your SSH key in Jenkins credentials
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-repo-url.git'
+                git 'https://github.com/your-repo-url.git' // Replace with your actual repo URL
             }
         }
 
@@ -27,7 +27,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh 'dotnet test'
+                    bat 'dotnet test'
                 }
             }
         }
@@ -35,7 +35,7 @@ pipeline {
         stage('Publish') {
             steps {
                 script {
-                    sh 'dotnet publish --configuration Release --output ./out'
+                    bat 'dotnet publish --configuration Release --output ./out'
                 }
             }
         }
@@ -43,7 +43,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKER_IMAGE} ."
+                    bat "docker build -t ${DOCKER_IMAGE} ."
                 }
             }
         }
@@ -51,9 +51,9 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    sh "docker login -u ${DOCKER_REGISTRY} -p ${DOCKER_PASSWORD}" // Set DOCKER_PASSWORD in Jenkins credentials
-                    sh "docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
-                    sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
+                    bat "docker login -u ${DOCKER_REGISTRY} -p ${DOCKER_PASSWORD}" // Ensure DOCKER_PASSWORD is set in Jenkins credentials
+                    bat "docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
+                    bat "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
                 }
             }
         }
@@ -61,8 +61,8 @@ pipeline {
         stage('Deploy to Docker Swarm') {
             steps {
                 script {
-                    sshagent(['your-ssh-key-id']) { // Use the SSH key added in Jenkins credentials
-                        sh """
+                    sshagent(['dockerid']) { // Use the ID of the SSH key added in Jenkins credentials
+                        bat """
                         ssh -o StrictHostKeyChecking=no ${SERVER_USER}@${SERVER_IP} '
                             cd /path/to/your/app
                             docker service update --image ${DOCKER_REGISTRY}/${DOCKER_IMAGE} my-swarm-service
